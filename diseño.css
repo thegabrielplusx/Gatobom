@@ -1,5 +1,5 @@
 /* ============================================================
-   diseño.css - Estructura visual y temas
+   estilos.css - Estructura visual y temas
    ============================================================ */
 
 :root {
@@ -28,6 +28,27 @@ body.tema-oscuro {
     --inputBorder: #333;
     --shadowColor: rgba(0, 0, 0, 0.3);
     --filterInvert: invert(1);
+    /* La imagen se gestiona ahora en el pseudo-elemento ::before */
+}
+
+/* Pseudo-elemento para evitar que el fondo fijo se deforme en Android y pantallas móviles */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('walpaper.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    transition: background-image 0.3s ease;
+}
+
+/* Cambio de imagen de fondo cuando está activo el tema oscuro */
+body.tema-oscuro::before {
     background-image: url('walpaper2.webp');
 }
 
@@ -38,11 +59,7 @@ html, body {
 
 body {
     background-color: var(--fondoOscuro);
-    background-image: url('walpaper.webp');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* Se eliminan las propiedades background de aquí para que las maneje el ::before */
     color: var(--textoClaro);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -58,6 +75,7 @@ body {
     box-sizing: border-box;
 }
 
+/* Contenedor principal del formulario */
 .tarjeta {
     background-color: var(--fondoTarjeta);
     border: 1px solid var(--bordeSuave);
@@ -74,6 +92,7 @@ body {
     transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
 }
 
+/* Zona de arrastre de la tarjeta */
 .handle-arrastre-tarjeta {
     width: 100%;
     text-align: center;
@@ -178,6 +197,7 @@ body {
     font-size: 16px;
 }
 
+/* Campos de entrada generales */
 input[type="text"],
 input[type="number"],
 input[type="date"],
@@ -262,6 +282,7 @@ input[type="checkbox"] {
     font-weight: 700;
 }
 
+/* Elementos de la lista de vacunas */
 .filaVacuna {
     display: flex;
     justify-content: space-between;
@@ -303,6 +324,7 @@ input[type="checkbox"] {
     padding: 10px 14px;
 }
 
+/* Botones principales de la interfaz */
 .botonAccion {
     width: 100%;
     background: var(--colorAcento);
@@ -414,7 +436,7 @@ input[type="checkbox"] {
     border-bottom-color: var(--colorAcento);
 }
 
-/* Footer compactado */
+/* Footer compactado y selectores de color */
 .footer-personalizacion {
     margin-top: 15px;
     padding: 10px;
@@ -476,15 +498,28 @@ input[type="checkbox"] {
     opacity: 0.9;
 }
 
+/* ============================================================
+   Ajustes de Responsividad para Móviles (Android / iOS)
+   ============================================================ */
 @media (max-width: 768px) {
     body {
         padding: 10px;
-        background-attachment: scroll;
+        /* El fondo ya no necesita ajustes aquí porque el pseudo-elemento ::before lo mantiene perfecto y centrado */
     }
 
     .tarjeta {
         padding: 20px;
         border-radius: 12px;
+        width: 100%;
+    }
+
+    /* Fuente a 16px obligatoria en inputs móviles para evitar el auto-zoom nativo al tocarlos */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    .area-notas,
+    .inputNombreVacuna {
+        font-size: 16px !important;
     }
 
     .seccionEncabezado {
