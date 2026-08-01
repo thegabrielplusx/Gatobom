@@ -1,0 +1,534 @@
+/* ============================================================
+   diseño.css - Estructura visual y temas
+   ============================================================ */
+
+:root {
+    --fondoOscuro: #000000;
+    --fondoTarjeta: #ffffff;
+    --colorAcentoRgb: 224, 169, 157;
+    --colorAcento: rgb(var(--colorAcentoRgb));
+    --textoClaro: #2d2926;
+    --textoTenue: #6c6662;
+    --bordeSuave: #dcd3cb;
+    --inputBg: #faf8f5;
+    --inputBorder: #dcd3cb;
+    --shadowColor: rgba(45, 41, 38, 0.08);
+    --filterInvert: none;
+}
+
+body.tema-oscuro {
+    --fondoOscuro: #14161d;
+    --fondoTarjeta: #202430;
+    --colorAcentoRgb: 64, 201, 133;
+    --colorAcento: rgb(var(--colorAcentoRgb));
+    --textoClaro: #e0e0e0;
+    --textoTenue: #888;
+    --bordeSuave: #333;
+    --inputBg: rgba(0, 0, 0, 0.3);
+    --inputBorder: #333;
+    --shadowColor: rgba(0, 0, 0, 0.3);
+    --filterInvert: invert(1);
+    background-image: url('walpaper2.webp');
+}
+
+html, body {
+    min-height: 100vh;
+    width: 100%;
+}
+
+body {
+    background-color: var(--fondoOscuro);
+    background-image: url('walpaper.webp');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--textoClaro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
+    font-size: 15px;
+    line-height: 1.5;
+    transition: background-color 0.3s, color 0.3s;
+    box-sizing: border-box;
+}
+
+.tarjeta {
+    background-color: var(--fondoTarjeta);
+    border: 1px solid var(--bordeSuave);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 520px;
+    box-sizing: border-box;
+    box-shadow: 0 10px 30px var(--shadowColor);
+    position: relative;
+    resize: both;
+    overflow: auto;
+    z-index: 10;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.handle-arrastre-tarjeta {
+    width: 100%;
+    text-align: center;
+    color: var(--bordeSuave);
+    font-size: 20px;
+    cursor: grab;
+    padding-bottom: 15px;
+    transition: color 0.3s ease;
+}
+.handle-arrastre-tarjeta:hover {
+    color: var(--textoTenue);
+}
+.handle-arrastre-tarjeta:active {
+    cursor: grabbing;
+}
+
+.seccionEncabezado {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--bordeSuave);
+}
+
+.cajaFoto {
+    width: 85px;
+    height: 85px;
+    border: 2px dashed var(--bordeSuave);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--colorAcento);
+    font-size: 26px;
+    background-color: var(--inputBg);
+    cursor: pointer;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+.cajaFoto:hover {
+    background-color: var(--bordeSuave);
+    border-color: var(--colorAcento);
+}
+
+.cajaNombre {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.cajaNombre span {
+    color: var(--textoTenue);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+.cajaNombre input[type="text"]#entradaNombreMascota {
+    margin: 5px 0 0 0;
+    color: var(--textoClaro);
+    font-size: 34px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+    font-weight: 700;
+    padding: 0;
+    transition: border-color 0.3s ease;
+}
+.cajaNombre input[type="text"]#entradaNombreMascota:focus {
+    border-bottom: 1px solid var(--colorAcento);
+}
+
+.filaFormulario {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.filaFormulario label {
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 145px;
+    color: var(--textoClaro);
+    font-size: 15px;
+}
+.filaFormulario label i {
+    color: var(--textoTenue);
+    width: 22px;
+    text-align: center;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+.area-notas {
+    background: var(--inputBg);
+    border: 1px solid var(--bordeSuave);
+    color: var(--textoClaro);
+    padding: 12px 16px;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+    flex: 1;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    box-sizing: border-box;
+    width: 100%;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+.area-notas:focus {
+    border-color: var(--colorAcento);
+    background: var(--fondoTarjeta);
+    box-shadow: 0 0 0 3px rgba(var(--colorAcentoRgb), 0.15);
+}
+
+.grupoOpciones {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.grupoOpciones label {
+    min-width: auto;
+    cursor: pointer;
+    color: var(--textoTenue);
+    transition: color 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+}
+.grupoOpciones label:hover {
+    color: var(--textoClaro);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    accent-color: var(--colorAcento);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.entradasEnLinea {
+    display: flex;
+    gap: 18px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.entradasEnLinea .grupoEntrada {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 150px;
+}
+.entradasEnLinea .grupoEntrada label {
+    min-width: 65px;
+}
+
+.tituloSeccion {
+    color: var(--textoClaro);
+    margin: 40px 0 22px 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--bordeSuave);
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+}
+
+.filaVacuna {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    background: var(--inputBg);
+    padding: 14px 18px;
+    border-radius: 8px;
+    border-left: 4px solid var(--colorAcento);
+    transition: transform 0.2s ease, background 0.3s ease;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.filaVacuna:hover {
+    background: var(--bordeSuave);
+    transform: translateX(4px);
+}
+.filaVacuna label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 15px;
+}
+.envolturaFecha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.envolturaFecha span {
+    color: var(--textoTenue);
+    font-size: 14px;
+    font-weight: 500;
+}
+.filaVacuna input[type="date"] {
+    max-width: 145px;
+    padding: 10px 14px;
+}
+
+.botonAccion {
+    width: 100%;
+    background: var(--colorAcento);
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+.botonAccion:hover {
+    background: var(--colorAcento);
+    filter: brightness(0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(var(--colorAcentoRgb), 0.25);
+}
+.botonAccion i {
+    font-size: 18px;
+}
+
+.botonAgregarVacuna {
+    background: transparent;
+    border: 2px dashed var(--textoTenue);
+    color: var(--textoClaro);
+    padding: 10px 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 18px 0 10px 0;
+    font-family: inherit;
+    font-weight: 600;
+}
+.botonAgregarVacuna:hover {
+    border-color: var(--colorAcento);
+    color: var(--colorAcento);
+    background: rgba(var(--colorAcentoRgb), 0.05);
+}
+
+.botonLimpiar {
+    background: var(--inputBg);
+    border: 1px solid var(--bordeSuave);
+    color: var(--textoClaro);
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+.botonLimpiar:hover {
+    background: var(--bordeSuave);
+}
+
+.botonEliminarVacuna {
+    background: transparent;
+    border: none;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.botonEliminarVacuna:hover {
+    color: #cc0000;
+    transform: scale(1.1);
+}
+
+.area-notas {
+    resize: vertical;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 90px;
+    line-height: 1.5;
+}
+
+.inputNombreVacuna {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--bordeSuave);
+    color: var(--textoClaro);
+    outline: none;
+    width: 150px;
+    padding: 4px 6px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+    font-weight: 500;
+}
+.inputNombreVacuna:focus {
+    border-bottom-color: var(--colorAcento);
+}
+
+/* Footer compactado */
+.footer-personalizacion {
+    margin-top: 15px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+.panel-colores {
+    display: flex;
+    gap: 12px;
+    background-color: var(--fondoTarjeta);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--bordeSuave);
+    box-shadow: 0 4px 15px var(--shadowColor);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+}
+.panel-colores label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--textoClaro);
+    cursor: pointer;
+    font-weight: 600;
+}
+.panel-colores input[type="color"] {
+    border: 1px solid var(--bordeSuave);
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    background: none;
+}
+.panel-colores input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+.panel-colores input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+}
+
+::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    filter: var(--filterInvert);
+}
+::-webkit-calendar-picker-indicator:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        background-attachment: scroll;
+    }
+
+    .tarjeta {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    .seccionEncabezado {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .cajaNombre input[type="text"]#entradaNombreMascota {
+        text-align: center;
+        margin: 5px auto 0 auto;
+    }
+
+    .filaFormulario {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 10px;
+    }
+
+    .filaFormulario[style*="flex-wrap: nowrap"] {
+        flex-wrap: wrap !important;
+        flex-direction: column !important;
+    }
+
+    .entradasEnLinea .grupoEntrada {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .envolturaFecha input[type="date"] {
+        max-width: 100% !important;
+        width: 100%;
+    }
+
+    .filaVacuna {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .panel-colores {
+        border-radius: 15px;
+        padding: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+}
